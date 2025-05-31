@@ -85,7 +85,7 @@ export default function Home() {
             loading={loading}
             generateScript={generateScript}
           />
-          <ScriptDisplay script={script} />
+          <ScriptDisplay script={script} loading={loading} />
         </div>
       </div>
     </main>

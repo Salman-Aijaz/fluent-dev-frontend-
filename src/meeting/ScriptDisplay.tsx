@@ -1,11 +1,13 @@
+import ScriptSkeleton from "@/Component/ScriptSkeleton";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
 
 interface Props {
   script: string;
+  loading: boolean; 
 }
 
-export default function ScriptDisplay({ script }: Props) {
+export default function ScriptDisplay({ script,loading }: Props) {
   return (
     <Card>
       <CardHeader>
@@ -16,7 +18,9 @@ export default function ScriptDisplay({ script }: Props) {
           Practice your communication by role-playing as the developer
         </p>
 
-        {script ? (
+        {loading ? (
+          <ScriptSkeleton />
+        ) : script ? (
           <div className="bg-muted p-4 rounded-md overflow-y-auto max-h-[500px] whitespace-pre-wrap">
             {script}
           </div>
