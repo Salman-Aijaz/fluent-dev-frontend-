@@ -17,6 +17,10 @@ interface Props {
   setDetailed: (value: boolean) => void;
   budget: boolean;
   setBudget: (value: boolean) => void;
+  friendly: boolean;
+  setFriendly: (value: boolean) => void;
+  formal: boolean;
+  setFormal: (value: boolean) => void;
   loading: boolean;
   generateScript: (e: FormEvent) => void;
 }
@@ -32,6 +36,10 @@ export default function FormSection({
   setDetailed,
   budget,
   setBudget,
+  friendly,
+  setFriendly,
+  formal,
+  setFormal,
   loading,
   generateScript,
 }: Props) {
@@ -42,7 +50,8 @@ export default function FormSection({
       </CardHeader>
       <CardContent>
         <p className="text-muted-foreground mb-4">
-          Enter a topic and the agent will create a meeting script where you play the developer and the AI plays the client.
+          Enter a topic and the agent will create a meeting script where you
+          play the developer and the AI plays the client.
         </p>
 
         <form onSubmit={generateScript} className="space-y-6">
@@ -84,10 +93,26 @@ export default function FormSection({
                 checked={budget}
                 onCheckedChange={setBudget}
               />
+              <OptionsCheckbox
+                id="friendly"
+                label="Friendly Client"
+                checked={friendly}
+                onCheckedChange={setFriendly}
+              />
+              <OptionsCheckbox
+                id="formal"
+                label="Formal Tone"
+                checked={formal}
+                onCheckedChange={setFormal}
+              />
             </div>
           </div>
 
-          <Button type="submit" className="w-full flex items-center justify-center gap-2" disabled={loading}>
+          <Button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2"
+            disabled={loading}
+          >
             <MessageSquare className="h-4 w-4" />
             {loading ? "Generating Script..." : "Generate Script"}
           </Button>

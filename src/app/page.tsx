@@ -13,6 +13,8 @@ export default function Home() {
   const [budget, setBudget] = useState(false);
   const [script, setScript] = useState("");
   const [loading, setLoading] = useState(false);
+  const [friendly, setFriendly] = useState(false);
+  const [formal, setFormal] = useState(false);
 
   const generateScript = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +32,15 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ topic, technical, challenging, detailed, budget }),
+        body: JSON.stringify({
+          topic,
+          technical,
+          challenging,
+          detailed,
+          budget,
+          friendly,
+          formal,
+        }),
       });
 
       if (!response.ok) throw new Error("Failed to generate script");
@@ -51,7 +61,8 @@ export default function Home() {
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2">Meeting Script Agent</h1>
           <p className="text-muted-foreground">
-            Generate realistic meeting scripts to practice your communication skills
+            Generate realistic meeting scripts to practice your communication
+            skills
           </p>
         </div>
 
@@ -67,6 +78,10 @@ export default function Home() {
             setDetailed={setDetailed}
             budget={budget}
             setBudget={setBudget}
+            friendly={friendly}
+            setFriendly={setFriendly}
+            formal={formal}
+            setFormal={setFormal}
             loading={loading}
             generateScript={generateScript}
           />
